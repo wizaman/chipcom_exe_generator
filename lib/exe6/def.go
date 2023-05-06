@@ -1,7 +1,5 @@
 package exe6
 
-const TargetName = "exe6"
-
 type GameVersionDef struct {
 	Gregar string
 	Falzar string
@@ -64,7 +62,6 @@ type AdditionalEffectDef struct {
 	Break         string
 	AntiInvisible string
 	AntiGround    string
-	AntiBarrier   string
 	Paralysis     string
 	Bubble        string
 	Confusion     string
@@ -90,7 +87,6 @@ var AdditionalEffect = AdditionalEffectDef{
 	"Break",
 	"AntiInvisible",
 	"AntiGround",
-	"AntiBarrier",
 	"Paralysis",
 	"Bubble",
 	"Confusion",
