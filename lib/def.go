@@ -1,14 +1,14 @@
 package lib
 
-import (
-	"chipcom/lib/exe6"
-)
-
 const AllTargetName = "all"
 
-func GetTargets() []string {
-	targets := []string{
-		exe6.TargetName,
-	}
-	return targets
+const InputJsonRoot = "../exe_db/json"
+const OutputCsvRoot = "../chipcom_exe/content/docs"
+
+var ChipCodeList1 = []string{
+	"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+}
+
+var ChipCodeList = []string{
+	"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "*",
 }

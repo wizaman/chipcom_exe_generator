@@ -1,11 +1,19 @@
-package lib
+package root
 
 import (
 	"fmt"
 	"os"
 
+	"chipcom/lib"
 	"chipcom/lib/exe6"
 )
+
+func GetTargets() []string {
+	targets := []string{
+		exe6.TargetName,
+	}
+	return targets
+}
 
 func Execute() error {
 	targets := parseTargets()
@@ -35,7 +43,7 @@ func parseTargets() []string {
 			continue
 		}
 
-		if target == AllTargetName {
+		if target == lib.AllTargetName {
 			return GetTargets()
 		}
 
