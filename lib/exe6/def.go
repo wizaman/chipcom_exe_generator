@@ -12,20 +12,6 @@ var GameVersion = GameVersionDef{
 	"X",
 }
 
-type BattleChipClassDef struct {
-	Standard string
-	Mega     string
-	Giga     string
-	Secret   string
-}
-
-var BattleChipClass = BattleChipClassDef{
-	"Standard",
-	"Mega",
-	"Giga",
-	"Secret",
-}
-
 type AttributeDef struct {
 	Normal string
 	Fire   string
@@ -52,6 +38,20 @@ var Attribute = AttributeDef{
 	"Wind",
 	"Object",
 	"Number",
+}
+
+type BattleChipClassDef struct {
+	Standard string
+	Mega     string
+	Giga     string
+	Secret   string
+}
+
+var BattleChipClass = BattleChipClassDef{
+	"Standard",
+	"Mega",
+	"Giga",
+	"Secret",
 }
 
 type AdditionalEffectDef struct {
@@ -104,6 +104,42 @@ var AdditionalEffect = AdditionalEffectDef{
 	"PanelGoing",
 }
 
+type TraderTypeDef struct {
+	Normal    string
+	Special   string
+	Bug       string
+	Crossover string
+}
+
+var TraderType = TraderTypeDef{
+	"Normal",
+	"Special",
+	"Bug",
+	"Crossover",
+}
+
+type TraderVariantDef struct {
+	AsterLand   string
+	SkyTown     string
+	Akiharacho  string
+	GreenTown   string
+	Crossover10 string
+	Crossover20 string
+	Crossover30 string
+	Crossover50 string
+}
+
+var TraderVariant = TraderVariantDef{
+	"アスタランド",
+	"スカイタウン",
+	"秋原町",
+	"グリーンタウン",
+	"10",
+	"20",
+	"30",
+	"50",
+}
+
 type BattleChip struct {
 	ID         string
 	SortId     int
@@ -121,4 +157,20 @@ type BattleChip struct {
 	Limit      int
 	Rarity     int
 	CodeList   []string
+}
+
+type TraderBattleChip struct {
+	ID       string
+	Name     string
+	Rarity   int
+	CodeList []string
+}
+
+type Trader struct {
+	ID             string
+	Type           string
+	Variant        string
+	HasAsterisk    bool
+	RarityCount    *map[string]int
+	BattleChipList *[]TraderBattleChip
 }

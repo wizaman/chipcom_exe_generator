@@ -1,6 +1,7 @@
 package exe6
 
 import (
+	"fmt"
 	"strconv"
 	"strings"
 )
@@ -133,4 +134,59 @@ func (p *BattleChip) toCsvBattleChip() *CsvBattleChip {
 		p.getCsvRarity(),
 		p.getCsvCodeList(),
 	}
+}
+
+func (p *TraderBattleChip) getCsvCodeList() string {
+	return strings.Join(p.CodeList, "")
+}
+
+func (p *TraderBattleChip) toCsvChipTrader() *CsvChipTrader {
+	return &CsvChipTrader{
+		p.Name,
+		p.getCsvCodeList(),
+		p.Rarity,
+	}
+}
+
+func (p *TraderBattleChip) toCsvCrossoverTrader(count int, total int) *CsvCrossoverTrader {
+	return &CsvCrossoverTrader{
+		p.Name,
+		p.getCsvCodeList(),
+		p.Rarity,
+		fmt.Sprintf("%d/%d", count, total),
+	}
+}
+
+func (p *Trader) toCsvChipTrader() *[]*CsvChipTrader {
+	traderChips := []*CsvChipTrader{}
+
+	for _, chip := range *p.BattleChipList {
+		traderChips = append(traderChips, chip.toCsvChipTrader())
+	}
+
+	return &traderChips
+}
+
+func (p *Trader) toCsvCrossoverTrader() *[]*CsvCrossoverTrader {
+	traderChips := []*CsvCrossoverTrader{}
+
+	isVariant10 := p.Variant == "10"
+	total := len(*p.BattleChipList)
+	if isVariant10 {
+		// 6種だが2種が倍率2倍なので総数を補正
+		total += 2
+	}
+
+	for _, chip := range *p.BattleChipList {
+		count := 1
+		if isVariant10 {
+			// 特定チップの排出率が2倍
+			if chip.Name == "ジャンゴ" || chip.Name == "ハクシャクEX" {
+				count = 2
+			}
+		}
+		traderChips = append(traderChips, chip.toCsvCrossoverTrader(count, total))
+	}
+
+	return &traderChips
 }

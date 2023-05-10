@@ -19,3 +19,16 @@ type CsvBattleChipCode struct {
 	BattleChipList string `csv:"バトルチップ"`
 	Count          int    `csv:"種類数"`
 }
+
+type CsvChipTrader struct {
+	BattleChipName string `csv:"バトルチップ"`
+	CodeList       string `csv:"チップコード"`
+	Rarity         int    `csv:"レア度"`
+}
+
+type CsvCrossoverTrader struct {
+	BattleChipName string `csv:"バトルチップ"`
+	CodeList       string `csv:"チップコード"`
+	Rarity         int    `csv:"レア度"`
+	Probability    string `csv:"確率"`
+}
