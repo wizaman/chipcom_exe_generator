@@ -66,6 +66,14 @@ func toCsvEffect(effect string) string {
 	return ""
 }
 
+func toRarityString(rarity int) string {
+	// return strings.Repeat("☆", rarity)
+	if rarity > 0 {
+		return "☆" + strconv.Itoa(rarity)
+	}
+	return "-"
+}
+
 func (p *BattleChip) getCsvNo() string {
 	if p.No >= 900 {
 		return "-"
@@ -109,11 +117,7 @@ func (p *BattleChip) getCsvEffectList() string {
 }
 
 func (p *BattleChip) getCsvRarity() string {
-	// return strings.Repeat("☆", p.Rarity)
-	if p.Rarity > 0 {
-		return "☆" + strconv.Itoa(p.Rarity)
-	}
-	return "-"
+	return toRarityString(p.Rarity)
 }
 
 func (p *BattleChip) getCsvCodeList() string {
@@ -140,11 +144,15 @@ func (p *TraderBattleChip) getCsvCodeList() string {
 	return strings.Join(p.CodeList, "")
 }
 
+func (p *TraderBattleChip) getCsvRarity() string {
+	return toRarityString(p.Rarity)
+}
+
 func (p *TraderBattleChip) toCsvChipTrader() *CsvChipTrader {
 	return &CsvChipTrader{
 		p.Name,
 		p.getCsvCodeList(),
-		p.Rarity,
+		p.getCsvRarity(),
 	}
 }
 
@@ -152,7 +160,7 @@ func (p *TraderBattleChip) toCsvCrossoverTrader(count int, total int) *CsvCrosso
 	return &CsvCrossoverTrader{
 		p.Name,
 		p.getCsvCodeList(),
-		p.Rarity,
+		p.getCsvRarity(),
 		fmt.Sprintf("%d/%d", count, total),
 	}
 }
